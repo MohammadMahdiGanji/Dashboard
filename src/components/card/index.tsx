@@ -1,32 +1,49 @@
 // import type
-import type { JSX } from "react";
-import type { CardType } from "./type";
+import type { JSX, ReactNode } from "react";
+import type { CardType } from "../../types/CardType";
+import type { IconType } from "./type";
 
-import { RechartsDevtools } from "@recharts/devtools";
-import { Line, LineChart } from "recharts";
+// import icons
+import { FaUsers } from "react-icons/fa";
+import { FaSackDollar } from "react-icons/fa6";
+import { GiShop } from "react-icons/gi";
+import { SiStatuspal } from "react-icons/si";
+
+import { FaArrowTrendUp } from "react-icons/fa6";
+import { FaArrowTrendDown } from "react-icons/fa6";
+
+const listIcon: IconType = {
+  Users: <FaUsers />,
+  Revenue: <FaSackDollar />,
+  ShoppingCart: <GiShop />,
+  Activity: <SiStatuspal />,
+} as const;
 
 export default function index({
-  id,
   title,
   growth,
   value,
   icon,
 }: CardType): JSX.Element {
+  const ComponentIcon: ReactNode = listIcon[icon];
   return (
-    <div className="bg-[#323232] p-5 rounded-lg w-full relative col-span-12 @lg:col-span-6 @4xl:col-span-4 @6xl:col-span-3">
-      <span className="text-white bg-[#0D7377] p-3 rounded-lg absolute -top-3">
-        {icon}
+    <div className="bg-[#323232] p-5 rounded-lg w-full mt-5 relative col-span-12 @lg:col-span-6 @4xl:col-span-4 @6xl:col-span-3">
+      <span className="text-white bg-[#0D7377] p-3 rounded-lg absolute -top-5 text-3xl">
+        {ComponentIcon}
       </span>
       <h3 className="text-right">{title}</h3>
-      <p className="text-right mt-4 font-bold text-2xl">{value}</p>
-      <LineChart
-        style={{ width: "100%", aspectRatio: 1.618, maxWidth: 600 }}
-        responsive
-        data={[{ value: 100 },{value:400},{value:200},{value:700},{value:300},{value:100},{value:500},{value:100},]}
-      >
-        <Line dataKey="value" type="monotone"/>
-        <RechartsDevtools />
-      </LineChart>
+      <p className="mt-4 font-bold text-2xl">{value}</p>
+
+      <div className="border-t mt-6 border-[#14FFEC] pt-2 flex gap-3 items-center">
+        <span>{growth} %</span>
+        <span>
+          {growth > 0 ? (
+            <FaArrowTrendUp className="text-[#6D9E51]" />
+          ) : (
+            <FaArrowTrendDown className="text-pink-600" />
+          )}
+        </span>
+      </div>
     </div>
   );
 }

@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+@layer utilities {
+
+  /* scroll custom table */
+  .scrollbar-custom-table::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .scrollbar-custom-table::-webkit-scrollbar-track {
+    background: #323232;
+  }
+
+  .scrollbar-custom-table::-webkit-scrollbar-thumb {
+    background: #14ffec;
+    box-shadow: 0 0 10px #14ffec;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .scrollbar-custom-table::-webkit-scrollbar-thumb:hover {
+    background: #12e6d6;
+  }
+
+   /* scroll custom page */
+   .scrollbar-custom-page::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-custom-page::-webkit-scrollbar-track {
+    background: #323232;
+  }
+
+  .scrollbar-custom-page::-webkit-scrollbar-thumb {
+    background: #14ffec;
+    box-shadow: 0 0 10px #14ffec;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .scrollbar-custom-page::-webkit-scrollbar-thumb:hover {
+    background: #12e6d6;
+  }
+}

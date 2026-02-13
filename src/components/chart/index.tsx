@@ -1,5 +1,9 @@
 // import type
 import type { JSX } from "react";
+import type { DataChartType } from "./type";
+
+// import React
+import { useState, useEffect } from "react";
 
 // import charts
 import {
@@ -13,12 +17,32 @@ import {
 } from "recharts";
 import { RechartsDevtools } from "@recharts/devtools";
 
+// import fetch server
+import { getDataCahrt } from "./fetchFromDataServer";
+
 export default function index({ isAnimationActive = true }): JSX.Element {
+  const [dataChart, setDataChart] = useState<DataChartType[]>([]);
+
+  const getData = async () => {
+    try {
+      const data = await getDataCahrt<DataChartType[]>(
+        "http://localhost:3000/yearChart"
+      );
+      setDataChart(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
-    <div className="bg-[#323232] p-5 rounded-lg w-full mt-10 h-full col-span-12 @6xl:col-span-6 max-h-[500px]">
+    <div className="bg-[#323232] p-5 rounded-lg w-full mt-10 h-full col-span-12 @6xl:col-span-6 max-h-[600px]">
+      <p className="text-center font-bold italic @3xl:text-xl @5xl:text-2xl">Year 2025</p>
       <div className="bg-[#323232] p-5 rounded-lg w-full">
         <AreaChart
-          style={{ width: "100%", aspectRatio: 1.618, maxHeight: 500 }}
+          style={{ width: "100%", aspectRatio: 1.618, maxHeight: 450 }}
           margin={{
             top: 20,
             right: 20,
@@ -27,38 +51,44 @@ export default function index({ isAnimationActive = true }): JSX.Element {
           }}
           responsive
           className="w-full"
-          data={[
-            { value1: 1000, name: "month 1", value2: 0 },
-            { value1: 5000, name: "month 2", value2: 2000 },
-            { value1: 3000, name: "month 3", value2: 5000 },
-            { value1: 2000, name: "month 5", value2: 1000 },
-            { value1: 5000, name: "month 4", value2: 6000 },
-          ]}
+          data={dataChart}
         >
-          <CartesianGrid stroke="#aaa" strokeDasharray="3 3" />
+          <CartesianGrid stroke="#14FFEC" strokeDasharray="3 3" />
+          <XAxis width="auto" dataKey="month" stroke="#14FFEC" />
+          <YAxis stroke="#14FFEC" />
           <defs>
-            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="revenue" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#14FFEC" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#14FFEC" stopOpacity={0} />
             </linearGradient>
-           
+          </defs>
+          <defs>
+            <linearGradient id="expense" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#FFE52A" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#FFE52A" stopOpacity={0} />
+            </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis width="auto" />
+
           <Tooltip />
           <Area
             type="monotone"
-            dataKey="value1"
+            dataKey="revenue"
             stroke="#14FFEC"
-            fillOpacity={1}
-            fill="url(#colorUv)"
+            fillOpacity={0.8}
+            fill="url(#revenue)"
             isAnimationActive={isAnimationActive}
           />
-          <XAxis dataKey="name" />
-          <YAxis width="auto" dataKey="value1"/>
+          <Area
+            type="monotone"
+            dataKey="expense"
+            stroke="#FFE52A"
+            fillOpacity={0.8}
+            fill="url(#expense)"
+            isAnimationActive={isAnimationActive}
+          />
           <Legend />
-          <RechartsDevtools />
+        
           <Tooltip />
         </AreaChart>
       </div>

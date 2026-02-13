@@ -1,7 +1,9 @@
-export interface CardType {
-  id: number;
-  title: string;
-  value: number;
-  growth: number;
-  icon: string;
+// import type
+import type { ReactNode } from "react";
+
+export interface IconType {
+  Users: ReactNode;
+  Revenue: ReactNode;
+  ShoppingCart: ReactNode;
+  Activity: ReactNode;
 }
