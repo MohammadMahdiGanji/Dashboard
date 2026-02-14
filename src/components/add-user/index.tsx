@@ -15,6 +15,9 @@ import { AddUserSchema } from "./validation";
 // fetch server
 import { PostData } from "./ferchFromServer";
 
+// import hook context
+import { useToogleForData } from "../../context/toggle-for-data/useToggleForData";
+
 // initial value for formik
 const initialValues: InfoFormAddUserType = {
   fullName: "",
@@ -24,6 +27,8 @@ const initialValues: InfoFormAddUserType = {
 };
 
 export default function AddUser(): JSX.Element {
+  const { toggle } = useToogleForData();
+
   const addUser = async (values: InfoFormAddUserType): Promise<void> => {
     const ress = await PostData("http://localhost:3000/users", values);
     console.log(ress);
@@ -31,6 +36,7 @@ export default function AddUser(): JSX.Element {
 
   const submitDataAddUser = (values: InfoFormAddUserType) => {
     addUser(values);
+    toggle();
   };
 
   return (

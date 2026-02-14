@@ -31,6 +31,7 @@
 
   .scrollbar-custom-page::-webkit-scrollbar-track {
     background: #323232;
+    border-radius: 50px;
   }
 
   .scrollbar-custom-page::-webkit-scrollbar-thumb {
