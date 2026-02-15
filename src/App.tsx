@@ -13,12 +13,17 @@ import DashboardLayout from "./layout/DashboardLayout";
 // import provider context toggle menu
 import ToggleMenuProvider from "./context/toggle-mnue/toggleMenuProvider";
 
+// import provider context toggle data
+import { ToggleForDataProvider } from "./context/toggle-for-data/ToggleForDataProvider";
+
 function App() {
   const router = useRoutes(route);
   return (
     <>
       <ToggleMenuProvider>
-        <DashboardLayout> {router}</DashboardLayout>
+        <ToggleForDataProvider>
+          <DashboardLayout> {router}</DashboardLayout>
+        </ToggleForDataProvider>
       </ToggleMenuProvider>
     </>
   );

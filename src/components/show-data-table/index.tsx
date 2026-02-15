@@ -61,7 +61,7 @@ export default function ShowDataUser({
       </Table.Head>
       <Table.Body>
         {userInfo.map((user) => (
-          <Table.Row>
+          <Table.Row key={user.id}>
             <Table.Col>{user.id}</Table.Col>
             <Table.Col>{user.fullName}</Table.Col>
             <Table.Col>{user.email}</Table.Col>

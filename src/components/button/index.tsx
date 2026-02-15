@@ -4,14 +4,14 @@ import type { BottonPropType } from "./type";
 
 export default function Button({
   children,
-  onCLick,
+  onClick,
   className,
 }: BottonPropType): JSX.Element {
   return (
     <>
-      {onCLick ? (
+      {onClick ? (
         <button
-          onClick={onCLick}
+          onClick={onClick}
           className={`text-[#323232] 
       bg-[#14FFEC] px-4 py-2 rounded-lg
       text-sm cursor-pointer

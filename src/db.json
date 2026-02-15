@@ -122,32 +122,25 @@
   ],
   "users": [
     {
-      "id": "5cf2",
-      "fullName": "mohammad mahdi ganjalia",
-      "email": "00mohammad00gmagi@gmail.com",
-      "password": "1245855852",
-      "type": "admin"
-    },
-    {
-      "id": "3eaa",
-      "fullName": "mohammad mahdi ganjalia",
-      "email": "00mohammad00gmagi@gmail.com",
-      "password": "1245855852",
-      "type": "admin"
-    },
-    {
-      "id": "92ff",
-      "fullName": "hkjjksd",
-      "email": "kjfl@gamil.com",
-      "password": "kdjfjjk",
+      "id": "76bc",
+      "fullName": "ldkjflkjfkjflkf",
+      "email": "ldjkfjk@gmail.com",
+      "password": "dlkfjlkjf",
       "type": "editor"
     },
     {
-      "id": "84df",
-      "fullName": "hkjjksd",
-      "email": "kjfl@gamil.com",
-      "password": "kdjfjjk",
+      "id": "59cf",
+      "fullName": "ldkjflkjfkjflkf",
+      "email": "ldjkfjk@gmail.com",
+      "password": "dlkfjlkjf",
       "type": "editor"
+    },
+    {
+      "id": "9419",
+      "fullName": "dkljflj",
+      "email": "lkdjf@gmail.com",
+      "password": "kdjjflk;joiekmnfv",
+      "type": "admin"
     }
   ]
 }

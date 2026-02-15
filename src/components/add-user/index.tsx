@@ -18,6 +18,9 @@ import { PostData } from "./ferchFromServer";
 // import hook context
 import { useToogleForData } from "../../context/toggle-for-data/useToggleForData";
 
+// import sonnter
+import { Toaster, toast } from "sonner";
+
 // initial value for formik
 const initialValues: InfoFormAddUserType = {
   fullName: "",
@@ -30,8 +33,10 @@ export default function AddUser(): JSX.Element {
   const { toggle } = useToogleForData();
 
   const addUser = async (values: InfoFormAddUserType): Promise<void> => {
-    const ress = await PostData("http://localhost:3000/users", values);
-    console.log(ress);
+    const res = await PostData("http://localhost:3000/users", values);
+    res.ok
+      ? toast.success("successfull add user")
+      : toast.error(`error add user status code:${res.status}`);
   };
 
   const submitDataAddUser = (values: InfoFormAddUserType) => {
@@ -90,6 +95,11 @@ export default function AddUser(): JSX.Element {
           </Form>
         </Formik>
       </div>
+      <Toaster
+        toastOptions={{
+          className: "bg-[#323232]! text-[#14FFEC]! border-[#14FFEC]!",
+        }}
+      />
     </div>
   );
 }
